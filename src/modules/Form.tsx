@@ -4,6 +4,8 @@ import { Search } from "../components/Search";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { changeSearchValue } from "../store/features/searchSlice";
 import { dictionary } from "../utils/dictionary";
+import { GithubAPI } from "../api/githubApi";
+import { updateUsers } from "../store/features/apiSlice";
 
 const Container = styled.form`
   display: flex;
@@ -13,6 +15,7 @@ const Container = styled.form`
 
 export const Form = () => {
   const searchValue = useAppSelector((state) => state.serach.searchValue);
+  const storedUsername = useAppSelector((state) => state.api.username);
 
   const dispatch = useAppDispatch();
 
@@ -22,6 +25,13 @@ export const Form = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (storedUsername === searchValue) {
+      return;
+    }
+
+    GithubAPI.searchUsers(searchValue).then(({ users, username }) => {
+      dispatch(updateUsers({ users, username }));
+    });
   };
 
   return (
