@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SearchUsersResponse } from "../../api/githubApi";
+import { SearchUsersResponse } from "../../api/GithubApi";
 
 type APISlice = {
   username: string;
@@ -24,9 +24,13 @@ export const apiSlice = createSlice({
       state.users = payload.users;
       state.username = payload.username;
     },
+    clearUsers: (state) => {
+      state.username = "";
+      state.users = [];
+    },
   },
 });
 
-export const { updateUsers } = apiSlice.actions;
+export const { updateUsers, clearUsers } = apiSlice.actions;
 
 export default apiSlice.reducer;

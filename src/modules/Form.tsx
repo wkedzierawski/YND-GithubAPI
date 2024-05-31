@@ -4,8 +4,8 @@ import { Search } from "../components/Search";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { changeSearchValue } from "../store/features/searchSlice";
 import { dictionary } from "../utils/dictionary";
-import { GithubAPI } from "../api/githubApi";
-import { updateUsers } from "../store/features/apiSlice";
+import { GithubAPI } from "../api/GithubApi";
+import { clearUsers, updateUsers } from "../store/features/apiSlice";
 
 const Container = styled.form`
   display: flex;
@@ -26,6 +26,11 @@ export const Form = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (storedUsername === searchValue) {
+      return;
+    }
+
+    if (!searchValue) {
+      dispatch(clearUsers());
       return;
     }
 
