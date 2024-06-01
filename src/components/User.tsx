@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { branding } from "../utils/branding";
-import { GithubAPI, GithubRepository, GithubUser } from "../api/GithubApi";
+import { GithubAPI } from "../api/GithubApi";
 import { useEffect, useMemo, useState } from "react";
 import { RepositoryInfo, RepositoryInfoPlaceholder } from "./RepositoryInfo";
 import { If } from "../common/If";
 import { useToggle } from "../hooks";
 import { Icon } from "./Icon";
+import { GithubRepository, GithubUser } from "../api/GithubApi.types";
 
 type StyledProps = {
   $expanded: boolean;

@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { GithubRepository } from "../api/GithubApi";
 import { blinkingAnimation } from "../utils/animations";
 import { branding } from "../utils/branding";
 import { Icon } from "./Icon";
 import { getTextEllipsis } from "../utils/utils.styles";
+import { GithubRepository } from "../api/GithubApi.types";
 
 type Props = {
   repository: GithubRepository;

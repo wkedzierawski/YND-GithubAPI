@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { GithubUser } from "../../api/GithubApi";
+import { GithubUser } from "../../api/GithubApi.types";
 
 type APISlice = {
   username: string;
