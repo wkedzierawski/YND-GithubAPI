@@ -85,5 +85,5 @@ const ExtendedInfo = styled.div`
   flex-direction: column;
   flex: 5;
   gap: 20px;
-  margin: 10px 0px;
+  margin: 10px 0px 0px 30px;
 `;

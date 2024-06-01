@@ -40,7 +40,6 @@ const Container = styled.div`
   height: 130px;
   gap: 5px;
   padding: 10px 20px;
-  margin-left: 30px;
   background-color: ${branding.repositoryInfoBackgroundColor};
 `;
 
@@ -68,5 +67,6 @@ const Title = styled.h3`
 `;
 
 const Description = styled.p`
+  overflow-wrap: anywhere;
   ${getTextEllipsis(3)}
 `;
