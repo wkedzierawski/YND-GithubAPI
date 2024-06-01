@@ -4,9 +4,10 @@ import { Search } from "../components/Search";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { changeSearchValue } from "../store/features/searchSlice";
 import { dictionary } from "../utils/dictionary";
-// import { GithubAPI } from "../api/GithubApi";
-import { clearUsers } from "../store/features/apiSlice";
+import { GithubAPI } from "../api/GithubApi";
+import { clearUsers, updateUsers } from "../store/features/apiSlice";
 import { useRef } from "react";
+import { serachUsersLimit } from "../utils/consts";
 
 export const Form = () => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -33,11 +34,11 @@ export const Form = () => {
       return;
     }
 
-    // GithubAPI.searchUsers(searchValue, serachUsersLimit).then(
-    //   ({ users, username }) => {
-    //     dispatch(updateUsers({ users, username }));
-    //   }
-    // );
+    GithubAPI.searchUsers(searchValue, serachUsersLimit).then(
+      ({ users, username }) => {
+        dispatch(updateUsers({ users, username }));
+      }
+    );
   };
 
   return (

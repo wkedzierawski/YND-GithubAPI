@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { branding } from "../utils/branding";
-// import { GithubAPI } from "../api/GithubApi";
+import { GithubAPI } from "../api/GithubApi";
 import { useEffect, useMemo, useState } from "react";
 import { RepositoryInfo, RepositoryInfoPlaceholder } from "./RepositoryInfo";
 import { If } from "../common/If";
@@ -28,11 +28,9 @@ export const User = ({ item }: Props) => {
       return;
     }
     startLoading();
-    setUserRepositories([]);
-    finishLoading();
-    // GithubAPI.getUserRepositories(item.login)
-    //   .then(setUserRepositories)
-    //   .finally(finishLoading);
+    GithubAPI.getUserRepositories(item.login)
+      .then(setUserRepositories)
+      .finally(finishLoading);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded, item.login, userRepositories.length]);
 
