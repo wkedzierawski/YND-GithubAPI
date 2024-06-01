@@ -10,6 +10,7 @@ const Container = styled.div`
   background-color: white;
   padding: 15px;
   gap: 20px;
+  margin: 20px 0px;
 `;
 
 export const GithubSearch = () => {

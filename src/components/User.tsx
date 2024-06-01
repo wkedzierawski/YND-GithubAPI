@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { branding } from "../utils/branding";
 import { GithubAPI, GithubRepository, GithubUser } from "../api/GithubApi";
-import { ArrowDown } from "./ArrowDown";
+import { ArrowDown } from "../icons/ArrowDown";
 import { useEffect, useMemo, useState } from "react";
-import { RepositoryInfo } from "./RepositoryInfo";
+import { RepositoryInfo, RepositoryInfoPlaceholder } from "./RepositoryInfo";
 import { If } from "../common/If";
+import { useToggle } from "../hooks";
 
 type StyledProps = {
   $expanded: boolean;
@@ -19,6 +20,7 @@ export const User = ({ item }: Props) => {
   const [userRepositories, setUserRepositories] = useState<GithubRepository[]>(
     []
   );
+  const [loading, startLoading, finishLoading] = useToggle(false);
 
   const toggleExpand = () => {
     setExpanded((prev) => !prev);
@@ -28,8 +30,11 @@ export const User = ({ item }: Props) => {
     if (!expanded || userRepositories.length) {
       return;
     }
-
-    GithubAPI.getUserRepositories(item.login).then(setUserRepositories);
+    startLoading();
+    GithubAPI.getUserRepositories(item.login)
+      .then(setUserRepositories)
+      .finally(finishLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded, item.login, userRepositories.length]);
 
   const repositories = useMemo(
@@ -47,7 +52,9 @@ export const User = ({ item }: Props) => {
         <ArrowDown $rotated={expanded} size={20} onClick={toggleExpand} />
       </BasicInfo>
       <If condition={expanded}>
-        <ExtendedInfo>{repositories}</ExtendedInfo>
+        <ExtendedInfo>
+          {loading ? <RepositoryInfoPlaceholder amount={3} /> : repositories}
+        </ExtendedInfo>
       </If>
     </Container>
   );
@@ -55,19 +62,16 @@ export const User = ({ item }: Props) => {
 
 const Container = styled.div<StyledProps>`
   width: 100%;
-  height: ${(props) => (props.$expanded ? 250 : 50)}px;
-  background-color: ${branding.secondaryColor};
-  padding: 5px;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
-  padding: 15px 25px 0 25px;
-  transition: 300ms ease-in-out height;
   flex-direction: column;
 `;
 
 const BasicInfo = styled.div`
+  background-color: ${branding.secondaryColor};
+  padding: 15px 25px;
   display: flex;
-  flex: 1;
   justify-content: space-between;
 `;
 
@@ -76,4 +80,5 @@ const ExtendedInfo = styled.div`
   flex-direction: column;
   flex: 5;
   gap: 20px;
+  margin: 10px 0px;
 `;

@@ -14,6 +14,6 @@ const Image = styled.img<StyledProps>`
   cursor: pointer;
 `;
 
-export const ArrowDown = (props: StyledProps) => {
-  return <Image src={ArrowDownSVG} {...props} />;
+export const ArrowDown = (styledProps: StyledProps) => {
+  return <Image src={ArrowDownSVG} {...styledProps} />;
 };

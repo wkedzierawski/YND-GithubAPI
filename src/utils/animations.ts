@@ -1,10 +1,11 @@
 import { keyframes } from "styled-components";
 
-export const fadeInAnimation = keyframes`
+export const blinkingAnimation = keyframes`
 from{
-    opacity:0
+    opacity: 1;
 }
 to{
-    opacity:1
+    opacity:0.6
 }
+
 `;
