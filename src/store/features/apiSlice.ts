@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SearchUsersResponse } from "../../api/GithubApi";
+import { GithubUser } from "../../api/GithubApi";
 
 type APISlice = {
   username: string;
-  users: SearchUsersResponse["data"]["items"];
+  users: GithubUser[];
 };
 
 type UpdateUsersPayload = PayloadAction<{
