@@ -20,11 +20,11 @@ export class GithubAPI {
     auth: import.meta.env.VITE_API_TOKEN,
   });
 
-  public static searchUsers = async (username: string) => {
+  public static searchUsers = async (username: string, limit: number) => {
     try {
       const response = await this.octokit.request("GET /search/users", {
         q: username,
-        per_page: 10,
+        per_page: limit,
       });
       return { users: response.data.items, username };
     } catch (error) {
@@ -38,7 +38,6 @@ export class GithubAPI {
         "GET /users/{username}/repos",
         {
           username,
-          per_page: 3,
         }
       );
 

@@ -6,6 +6,7 @@ import { changeSearchValue } from "../store/features/searchSlice";
 import { dictionary } from "../utils/dictionary";
 import { GithubAPI } from "../api/GithubApi";
 import { clearUsers, updateUsers } from "../store/features/apiSlice";
+import { serachUsersLimit } from "../utils/consts";
 
 const Container = styled.form`
   display: flex;
@@ -34,9 +35,11 @@ export const Form = () => {
       return;
     }
 
-    GithubAPI.searchUsers(searchValue).then(({ users, username }) => {
-      dispatch(updateUsers({ users, username }));
-    });
+    GithubAPI.searchUsers(searchValue, serachUsersLimit).then(
+      ({ users, username }) => {
+        dispatch(updateUsers({ users, username }));
+      }
+    );
   };
 
   return (
