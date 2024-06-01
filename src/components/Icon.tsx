@@ -12,12 +12,9 @@ type StyledProps = {
 
 type Props = StyledProps & {
   name: Icons;
-  onClick?: () => void;
 };
 
-export const Icon = ({ name, onClick, $size = 20, ...styledProps }: Props) => {
-  const Component = onClick ? ClickableImage : Image;
-
+export const Icon = ({ name, $size = 20, ...styledProps }: Props) => {
   const svg = useMemo(() => {
     switch (name) {
       case "ArrowDown":
@@ -27,9 +24,7 @@ export const Icon = ({ name, onClick, $size = 20, ...styledProps }: Props) => {
     }
   }, [name]);
 
-  return (
-    <Component src={svg} onClick={onClick} $size={$size} {...styledProps} />
-  );
+  return <Image src={svg} $size={$size} {...styledProps} />;
 };
 
 const Image = styled.img<StyledProps>`
@@ -37,8 +32,4 @@ const Image = styled.img<StyledProps>`
   height: ${(props) => props.$size}px;
   transform: ${(props) => (props.$rotated ? "rotate(180deg)" : "initial")};
   -webkit-tap-highlight-color: transparent;
-`;
-
-const ClickableImage = styled(Image)`
-  cursor: pointer;
 `;

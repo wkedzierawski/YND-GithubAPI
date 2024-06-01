@@ -19,7 +19,7 @@ export const User = ({ item }: Props) => {
   );
   const [loading, startLoading, finishLoading] = useToggle(false);
 
-  const toggleExpand = () => {
+  const toggleExpandedInfo = () => {
     setExpanded((prev) => !prev);
   };
 
@@ -44,13 +44,13 @@ export const User = ({ item }: Props) => {
 
   return (
     <Container>
-      <BasicInfo>
+      <BasicInfo onClick={toggleExpandedInfo}>
         <p>{item.login}</p>
-        <Icon name="ArrowDown" onClick={toggleExpand} $rotated={expanded} />
+        <Icon name="ArrowDown" $rotated={expanded} />
       </BasicInfo>
       <If condition={expanded}>
         <ExtendedInfo>
-          {loading ? <RepositoryInfoPlaceholder amount={3} /> : repositories}
+          {loading ? <RepositoryInfoPlaceholder amount={1} /> : repositories}
         </ExtendedInfo>
       </If>
     </Container>
@@ -70,6 +70,7 @@ const BasicInfo = styled.div`
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const ExtendedInfo = styled.div`
