@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { branding } from "../utils/branding";
 import { GithubAPI, GithubRepository, GithubUser } from "../api/GithubApi";
-import { ArrowDown } from "../icons/ArrowDown";
 import { useEffect, useMemo, useState } from "react";
 import { RepositoryInfo, RepositoryInfoPlaceholder } from "./RepositoryInfo";
 import { If } from "../common/If";
 import { useToggle } from "../hooks";
+import { Icon } from "./Icon";
 
 type StyledProps = {
   $expanded: boolean;
@@ -49,7 +49,7 @@ export const User = ({ item }: Props) => {
     <Container $expanded={expanded}>
       <BasicInfo>
         <p>{item.login}</p>
-        <ArrowDown $rotated={expanded} size={20} onClick={toggleExpand} />
+        <Icon name="ArrowDown" onClick={toggleExpand} $rotated={expanded} />
       </BasicInfo>
       <If condition={expanded}>
         <ExtendedInfo>

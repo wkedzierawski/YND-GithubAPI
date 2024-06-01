@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { GithubRepository } from "../api/GithubApi";
 import { blinkingAnimation } from "../utils/animations";
-import { Star } from "../icons/Star";
 import { branding } from "../utils/branding";
+import { Icon } from "./Icon";
 
 type Props = {
   repository: GithubRepository;
@@ -21,7 +21,7 @@ export const RepositoryInfo = ({ repository }: Props) => {
       </LeftContainer>
       <RightContainer>
         {repository.stargazers_count}
-        <Star size={20} />
+        <Icon name="Star" />
       </RightContainer>
     </Container>
   );
