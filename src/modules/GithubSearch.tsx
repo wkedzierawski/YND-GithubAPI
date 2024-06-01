@@ -2,6 +2,15 @@ import styled from "styled-components";
 import { Form } from "./Form";
 import { Results } from "./Results";
 
+export const GithubSearch = () => {
+  return (
+    <Container>
+      <Form />
+      <Results />
+    </Container>
+  );
+};
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,12 +21,3 @@ const Container = styled.div`
   gap: 20px;
   margin: 20px 0px;
 `;
-
-export const GithubSearch = () => {
-  return (
-    <Container>
-      <Form />
-      <Results />
-    </Container>
-  );
-};

@@ -1,5 +1,5 @@
 import { Endpoints } from "@octokit/types";
-import { ArrayElement } from "../utils/utils";
+import { ArrayElement } from "../utils/utils.types";
 
 export type GithubUser = ArrayElement<
   Endpoints["GET /search/users"]["response"]["data"]["items"]

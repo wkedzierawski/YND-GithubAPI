@@ -8,10 +8,6 @@ import { useToggle } from "../hooks";
 import { Icon } from "./Icon";
 import { GithubRepository, GithubUser } from "../api/GithubApi.types";
 
-type StyledProps = {
-  $expanded: boolean;
-};
-
 type Props = {
   item: GithubUser;
 };
@@ -47,7 +43,7 @@ export const User = ({ item }: Props) => {
   );
 
   return (
-    <Container $expanded={expanded}>
+    <Container>
       <BasicInfo>
         <p>{item.login}</p>
         <Icon name="ArrowDown" onClick={toggleExpand} $rotated={expanded} />
@@ -61,7 +57,7 @@ export const User = ({ item }: Props) => {
   );
 };
 
-const Container = styled.div<StyledProps>`
+const Container = styled.div`
   width: 100%;
   height: fit-content;
   display: flex;

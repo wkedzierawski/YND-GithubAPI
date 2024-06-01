@@ -6,19 +6,6 @@ import { useMemo } from "react";
 import { User } from "../components/User";
 import { If } from "../common/If";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-`;
-
-const ResultsFor = styled.p`
-  width: 100%;
-  display: flex;
-  color: ${branding.tertiaryColor};
-`;
-
 export const Results = () => {
   const { users, username } = useAppSelector((state) => state.api);
 
@@ -39,3 +26,16 @@ export const Results = () => {
     </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;
+
+const ResultsFor = styled.p`
+  width: 100%;
+  display: flex;
+  color: ${branding.tertiaryColor};
+`;
