@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { GithubSearch } from "./modules/GithubSearch";
 import { branding } from "./utils/branding";
+import { minDesktopWidth } from "./utils/consts";
 
 export const App = () => {
   return (
@@ -14,7 +15,9 @@ const AppContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: ${branding.secondaryColor};
+  @media (min-width: ${minDesktopWidth}px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;

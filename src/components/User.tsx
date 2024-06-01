@@ -7,6 +7,7 @@ import { If } from "../common/If";
 import { useToggle } from "../hooks";
 import { Icon } from "./Icon";
 import { GithubRepository, GithubUser } from "../api/GithubApi.types";
+import { getTextEllipsis } from "../utils/utils.styles";
 
 type Props = {
   item: GithubUser;
@@ -45,7 +46,7 @@ export const User = ({ item }: Props) => {
   return (
     <Container>
       <BasicInfo onClick={toggleExpandedInfo}>
-        <p>{item.login}</p>
+        <Username>{item.login}</Username>
         <Icon name="ArrowDown" $rotated={expanded} />
       </BasicInfo>
       <If condition={expanded}>
@@ -71,6 +72,12 @@ const BasicInfo = styled.div`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+`;
+
+const Username = styled.p`
+  word-break: break-all;
+  ${getTextEllipsis(1)}
 `;
 
 const ExtendedInfo = styled.div`
