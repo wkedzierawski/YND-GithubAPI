@@ -6,7 +6,7 @@ import { If } from "../common/If";
 import { useToggle } from "../hooks";
 import { Icon } from "./Icon";
 import { GithubRepository, GithubUser } from "../api/GithubApi.types";
-import { GithubAPI } from "../api/githubApi";
+import { GithubAPI } from "../api/GithubApi";
 
 type Props = {
   item: GithubUser;

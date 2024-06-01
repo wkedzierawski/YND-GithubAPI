@@ -7,7 +7,7 @@ import { dictionary } from "../utils/dictionary";
 import { clearUsers, updateUsers } from "../store/features/apiSlice";
 import { useRef } from "react";
 import { serachUsersLimit } from "../utils/consts";
-import { GithubAPI } from "../api/githubApi";
+import { GithubAPI } from "../api/GithubApi";
 
 export const Form = () => {
   const searchRef = useRef<HTMLInputElement>(null);
