@@ -36,6 +36,7 @@ const Image = styled.img<StyledProps>`
   width: ${(props) => props.$size}px;
   height: ${(props) => props.$size}px;
   transform: ${(props) => (props.$rotated ? "rotate(180deg)" : "initial")};
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const ClickableImage = styled(Image)`

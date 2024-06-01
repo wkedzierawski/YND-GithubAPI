@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { branding } from "../utils/branding";
+import { forwardRef } from "react";
 
 const Input = styled.input`
   width: 100%;
@@ -14,10 +15,12 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   onValueChange: (value: string) => void;
 };
 
-export const Search = ({ onValueChange, ...props }: Props) => {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onValueChange(e.currentTarget.value);
-  };
+export const Search = forwardRef<HTMLInputElement, Props>(
+  ({ onValueChange, ...props }, ref) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onValueChange(e.currentTarget.value);
+    };
 
-  return <Input {...props} onChange={onChange} />;
-};
+    return <Input {...props} ref={ref} onChange={onChange} />;
+  }
+);

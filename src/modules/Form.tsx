@@ -7,6 +7,7 @@ import { dictionary } from "../utils/dictionary";
 import { GithubAPI } from "../api/GithubApi";
 import { clearUsers, updateUsers } from "../store/features/apiSlice";
 import { serachUsersLimit } from "../utils/consts";
+import { useRef } from "react";
 
 const Container = styled.form`
   display: flex;
@@ -15,6 +16,8 @@ const Container = styled.form`
 `;
 
 export const Form = () => {
+  const searchRef = useRef<HTMLInputElement>(null);
+
   const searchValue = useAppSelector((state) => state.serach.searchValue);
   const storedUsername = useAppSelector((state) => state.api.username);
 
@@ -29,6 +32,8 @@ export const Form = () => {
     if (storedUsername === searchValue) {
       return;
     }
+
+    searchRef.current?.blur();
 
     if (!searchValue) {
       dispatch(clearUsers());
@@ -48,6 +53,7 @@ export const Form = () => {
         placeholder={dictionary.SEARCH_INPUT_PLACEHOLDER}
         value={searchValue}
         onValueChange={onValueChange}
+        ref={searchRef}
       />
       <Button text={dictionary.SEARCH_BUTTON} type="submit" />
     </Container>
