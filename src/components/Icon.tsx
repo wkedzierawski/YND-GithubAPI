@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import styled from "styled-components";
-import ArrowDownSVG from "../static/arrowDown.svg";
-import StarSVG from "../static/star.svg";
+import ArrowDownSVG from "../assets/svg/arrowDown.svg";
+import StarSVG from "../assets/svg/star.svg";
 
 type Icons = "ArrowDown" | "Star";
 
