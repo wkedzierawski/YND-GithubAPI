@@ -1,26 +1,31 @@
 import { useMemo } from "react";
 import { RepositoryInfo, RepositoryInfoPlaceholder } from "./RepositoryInfo";
 import styled from "styled-components";
-import { useUserRepositories } from "../api/hooks.api";
+import { GithubAPI } from "../api/GithubApi";
+import { QueryKey } from "../utils/query.types";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   username: string;
 };
 
 export const UserRepositories = ({ username }: Props) => {
-  const { userRepositories, loading } = useUserRepositories(username);
+  const { data = [], isLoading } = useQuery({
+    queryKey: [QueryKey.USER_REPOSITORIES, username],
+    queryFn: () => GithubAPI.getUserRepositories(username),
+  });
 
   const repositories = useMemo(
     () =>
-      userRepositories.map((repository) => (
+      data.map((repository) => (
         <RepositoryInfo key={repository.id} repository={repository} />
       )),
-    [userRepositories]
+    [data]
   );
 
   return (
     <Container>
-      {loading ? <RepositoryInfoPlaceholder /> : repositories}
+      {isLoading ? <RepositoryInfoPlaceholder /> : repositories}
     </Container>
   );
 };
