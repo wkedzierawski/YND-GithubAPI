@@ -9,10 +9,6 @@ type Props = {
   repository: GithubRepository;
 };
 
-type PlaceholderProps = {
-  amount: number;
-};
-
 export const RepositoryInfo = ({ repository }: Props) => {
   return (
     <Container>
@@ -28,10 +24,8 @@ export const RepositoryInfo = ({ repository }: Props) => {
   );
 };
 
-export const RepositoryInfoPlaceholder = ({ amount }: PlaceholderProps) => {
-  return Array(amount)
-    .fill(null)
-    .map((_, index) => <PlaceholderContainer key={index} />);
+export const RepositoryInfoPlaceholder = () => {
+  return <PlaceholderContainer />;
 };
 
 const Container = styled.div`
