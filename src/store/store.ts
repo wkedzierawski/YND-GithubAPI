@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./features/searchSlice";
-import apiSlice from "./features/apiSlice";
+import apiReducer from "./features/apiSlice";
 
 export const store = configureStore({
   reducer: {
-    serach: searchReducer,
-    api: apiSlice,
+    search: searchReducer,
+    api: apiReducer,
   },
 });
 

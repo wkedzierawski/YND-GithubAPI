@@ -14,7 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 export const Form = () => {
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const searchValue = useAppSelector((state) => state.serach.searchValue);
+  const searchValue = useAppSelector((state) => state.search.searchValue);
   const storedUsername = useAppSelector((state) => state.api.username);
 
   const dispatch = useAppDispatch();
