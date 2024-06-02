@@ -14,8 +14,7 @@ export const useUserRepositories = (username: string) => {
     GithubAPI.getUserRepositories(username)
       .then(setUserRepositories)
       .finally(finishLoading);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [finishLoading, startLoading, username]);
 
   return { userRepositories, loading };
 };

@@ -12,7 +12,6 @@ export const App = () => {
 };
 
 const AppContainer = styled.div`
-  width: 100vw;
   min-height: 100vh;
   display: flex;
   background-color: ${branding.secondaryColor};
